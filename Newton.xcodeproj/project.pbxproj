@@ -15,6 +15,7 @@
 		77C920BA15DEA068009AC386 /* INAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C920B915DEA068009AC386 /* INAppDelegate.m */; };
 		77C920C215DEA0AC009AC386 /* INViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C920C115DEA0AC009AC386 /* INViewController.m */; };
 		77C920C515DEA0E3009AC386 /* INBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C920C415DEA0E3009AC386 /* INBallView.m */; };
+		77C920C715DEB720009AC386 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C920C615DEB720009AC386 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		77C920C115DEA0AC009AC386 /* INViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INViewController.m; sourceTree = "<group>"; };
 		77C920C315DEA0E3009AC386 /* INBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INBallView.h; sourceTree = "<group>"; };
 		77C920C415DEA0E3009AC386 /* INBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INBallView.m; sourceTree = "<group>"; };
+		77C920C615DEB720009AC386 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C920C715DEB720009AC386 /* GameKit.framework in Frameworks */,
 				77C920AA15DEA068009AC386 /* UIKit.framework in Frameworks */,
 				77C920AC15DEA068009AC386 /* Foundation.framework in Frameworks */,
 				77C920AE15DEA068009AC386 /* CoreGraphics.framework in Frameworks */,
@@ -68,6 +71,7 @@
 		77C920A815DEA068009AC386 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77C920C615DEB720009AC386 /* GameKit.framework */,
 				77C920A915DEA068009AC386 /* UIKit.framework */,
 				77C920AB15DEA068009AC386 /* Foundation.framework */,
 				77C920AD15DEA068009AC386 /* CoreGraphics.framework */,
