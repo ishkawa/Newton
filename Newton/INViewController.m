@@ -86,11 +86,9 @@
               didConnectPeer:(NSString *)peerID
                    toSession:(GKSession *)session
 {
-    self.peerID = peerID;
-    self.session = session;
-    self.session.delegate = self;
-    
+    session.delegate = self;
     [session setDataReceiveHandler:self withContext:nil];
+    
     [picker dismiss];
 }
 
@@ -100,8 +98,10 @@
            peer:(NSString *)peerID
  didChangeState:(GKPeerConnectionState)state
 {
-    // TODO: toggle balls user interaction
     if (state == GKPeerStateConnected) {
+        self.session = session;
+        self.peerID  = peerID;
+        
         [[[UIAlertView alloc] initWithTitle:@"connected"
                                     message:nil
                                    delegate:nil
@@ -109,6 +109,9 @@
                           otherButtonTitles:nil] show];
     }
     if (state == GKPeerStateDisconnected) {
+        self.session = nil;
+        self.peerID  = nil;
+        
         [[[UIAlertView alloc] initWithTitle:@"disconnected"
                                     message:nil
                                    delegate:nil
@@ -121,6 +124,11 @@
 
 - (void)ballViewDidGoOut:(INBallView *)ballView
 {
+    if (!self.session) {
+        ballView.velocity = CGPointMake(ballView.velocity.x, -ballView.velocity.y);
+        return;
+    }
+    
     NSDictionary *dictionary = @{
         @"velocity" : [NSValue valueWithCGPoint:ballView.velocity],
         @"center"   : [NSValue valueWithCGPoint:ballView.center],
