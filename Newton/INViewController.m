@@ -2,6 +2,19 @@
 
 @implementation INViewController
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:INTERVAL
+                                                      target:self
+                                                    selector:@selector(animateBallViews)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    }
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -18,6 +31,8 @@
     [self showPeerPicker];
 }
 
+#pragma mark - action
+
 - (void)showPeerPicker
 {
     GKPeerPickerController *picker = [[GKPeerPickerController alloc] init];
@@ -27,7 +42,15 @@
     [picker show];
 }
 
-#pragma mark - action
+- (void)animateBallViews
+{
+    for (UIView *subview in self.view.subviews) {
+        if ([subview isKindOfClass:[INBallView class]]) {
+            INBallView *ballView = (INBallView *)subview;
+            [ballView move];
+        }
+    }
+}
 
 - (void)sendData:(NSData *)data
 {

@@ -1,0 +1,2 @@
+#define INTERVAL 0.01
+#define ATTENUATION_RATE 10.f

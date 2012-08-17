@@ -8,8 +8,9 @@
 @property CGPoint velocity;
 @property NSTimeInterval timestamp;
 
-@property (strong, nonatomic) NSTimer *timer;
 @property (weak, nonatomic) id <INBallViewDelegate> delegate;
+
+- (void)move;
 
 @end
 

@@ -6,6 +6,7 @@
 
 <GKPeerPickerControllerDelegate, GKSessionDelegate, INBallViewDelegate>
 
+@property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) GKSession *session;
 @property (strong, nonatomic) NSString *peerID;
 

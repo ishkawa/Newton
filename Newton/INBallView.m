@@ -1,9 +1,6 @@
 #import "INBallView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define INTERVAL 0.01
-#define ATTENUATION_RATE 10.f
-
 @implementation INBallView
 
 - (id)init
@@ -14,11 +11,6 @@
         self.velocity = CGPointMake(0.f, 0.f);
         self.timestamp = [[NSProcessInfo processInfo] systemUptime];
         self.backgroundColor = [UIColor darkGrayColor];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:INTERVAL
-                                                      target:self
-                                                    selector:@selector(move)
-                                                    userInfo:nil
-                                                     repeats:YES];
     }
     return self;
 }
@@ -28,8 +20,14 @@
     if (self.dragging) {
         return;
     }
-    self.center = CGPointMake(self.center.x + self.velocity.x*INTERVAL,
-                              self.center.y + self.velocity.y*INTERVAL);
+    [UIView animateWithDuration:INTERVAL
+                          delay:0.f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.center = CGPointMake(self.center.x + self.velocity.x*INTERVAL,
+                                                   self.center.y + self.velocity.y*INTERVAL);
+                     }
+                     completion:nil];
 
     // bound
     if (self.center.x < 0 || self.center.x > self.superview.frame.size.width) {
@@ -38,10 +36,9 @@
     if (self.center.y < 0) {
         self.velocity = CGPointMake(self.velocity.x, -self.velocity.y);
     }
+    
+    // move to pair screen
     if (self.center.y > self.superview.frame.size.height) {
-        [self.timer invalidate];
-        self.timer = nil;
-        
         [self.delegate ballViewDidGoOut:self];
     }
     

@@ -34,6 +34,7 @@
 		77C920C315DEA0E3009AC386 /* INBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INBallView.h; sourceTree = "<group>"; };
 		77C920C415DEA0E3009AC386 /* INBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INBallView.m; sourceTree = "<group>"; };
 		77C920C615DEB720009AC386 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		77C920C815DED176009AC386 /* INConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INConstant.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 		77C920AF15DEA068009AC386 /* Newton */ = {
 			isa = PBXGroup;
 			children = (
+				77C920C815DED176009AC386 /* INConstant.h */,
 				77C920B815DEA068009AC386 /* INAppDelegate.h */,
 				77C920B915DEA068009AC386 /* INAppDelegate.m */,
 				77C920C015DEA0AC009AC386 /* INViewController.h */,
