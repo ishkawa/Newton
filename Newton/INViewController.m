@@ -1,5 +1,4 @@
 #import "INViewController.h"
-#import "INBallView.h"
 
 @implementation INViewController
 
@@ -7,11 +6,10 @@
 {
     [super loadView];
     
-    for (NSInteger i=0; i<10; i++) {
-        INBallView *ballView = [[INBallView alloc] init];
-        ballView.frame = CGRectMake(0, 0, 100, 100);
-        [self.view addSubview:ballView];
-    }
+    INBallView *ballView = [[INBallView alloc] init];
+    ballView.frame = CGRectMake(0, 0, 100, 100);
+    ballView.delegate = self;
+    [self.view addSubview:ballView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -31,11 +29,10 @@
 
 #pragma mark - action
 
-- (void)send
+- (void)sendData:(NSData *)data
 {
-    NSLog(@"sent");
-    [self.session sendData:[@"hogehoge" dataUsingEncoding:NSUTF8StringEncoding]
-                   toPeers:@[self.peerID]
+    [self.session sendData:data
+                   toPeers:@[ self.peerID ]
               withDataMode:GKSendDataReliable
                      error:nil];
 }
@@ -47,7 +44,17 @@
           inSession:(GKSession *)session
             context:(void *)context
 {
-    NSLog(@"received");
+    NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    CGPoint velocity = [[dictionary objectForKey:@"velocity"] CGPointValue];
+    CGPoint center = [[dictionary objectForKey:@"center"] CGPointValue];
+    
+    INBallView *ballView = [[INBallView alloc] init];
+    ballView.frame    = CGRectMake(0, 0, 100, 100);
+    ballView.center   = CGPointMake(self.view.frame.size.width - center.x, center.y);
+    ballView.velocity = CGPointMake(-velocity.x, -velocity.y);
+    ballView.delegate = self;
+    
+    [self.view addSubview:ballView];
 }
 
 #pragma mark - peer picker delegate
@@ -62,12 +69,6 @@
     
     [session setDataReceiveHandler:self withContext:nil];
     [picker dismiss];
-    
-    double delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self send];
-    });
 }
 
 #pragma mark - session delegate
@@ -91,6 +92,20 @@
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
     }
+}
+
+#pragma mark - ball view delegate
+
+- (void)ballViewDidGoOut:(INBallView *)ballView
+{
+    NSDictionary *dictionary = @{
+        @"velocity" : [NSValue valueWithCGPoint:ballView.velocity],
+        @"center"   : [NSValue valueWithCGPoint:ballView.center],
+    };
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
+    
+    [self sendData:data];
+    [ballView removeFromSuperview];
 }
 
 @end

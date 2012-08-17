@@ -1,8 +1,8 @@
 #import "INBallView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define INTERVAL 0.001
-#define ATTENUATION_RATE 2.f
+#define INTERVAL 0.01
+#define ATTENUATION_RATE 10.f
 
 @implementation INBallView
 
@@ -35,8 +35,14 @@
     if (self.center.x < 0 || self.center.x > self.superview.frame.size.width) {
         self.velocity = CGPointMake(-self.velocity.x, self.velocity.y);
     }
-    if (self.center.y < 0 || self.center.y > self.superview.frame.size.height) {
+    if (self.center.y < 0) {
         self.velocity = CGPointMake(self.velocity.x, -self.velocity.y);
+    }
+    if (self.center.y > self.superview.frame.size.height) {
+        [self.timer invalidate];
+        self.timer = nil;
+        
+        [self.delegate ballViewDidGoOut:self];
     }
     
     // attenuation
