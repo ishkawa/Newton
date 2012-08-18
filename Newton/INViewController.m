@@ -32,7 +32,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self showPeerPicker];
+    [self becomeFirstResponder];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
 }
 
 #pragma mark - action
@@ -62,6 +67,15 @@
                    toPeers:@[ self.peerID ]
               withDataMode:GKSendDataReliable
                      error:nil];
+}
+
+#pragma mark - motion event handler
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+        [self showPeerPicker];
+    }
 }
 
 #pragma mark - data receive handler

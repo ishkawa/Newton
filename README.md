@@ -1,0 +1,1 @@
+シェイクするとGKPeerPickerControllerが表示されます。
