@@ -2,12 +2,13 @@
 
 @protocol INBallViewDelegate;
 
-@interface INBallView : UIView
+@interface INBallView : UIImageView
 
 @property BOOL dragging;
 @property CGPoint velocity;
 @property NSTimeInterval timestamp;
 
+@property (strong, nonatomic) UIColor *color;
 @property (weak, nonatomic) id <INBallViewDelegate> delegate;
 
 - (void)move;

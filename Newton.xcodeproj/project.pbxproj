@@ -16,6 +16,8 @@
 		77C920C215DEA0AC009AC386 /* INViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C920C115DEA0AC009AC386 /* INViewController.m */; };
 		77C920C515DEA0E3009AC386 /* INBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C920C415DEA0E3009AC386 /* INBallView.m */; };
 		77C920C715DEB720009AC386 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C920C615DEB720009AC386 /* GameKit.framework */; };
+		77C920CB15DED6E2009AC386 /* UIColor+Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C920CA15DED6E2009AC386 /* UIColor+Code.m */; };
+		77C920CD15DEDDBB009AC386 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C920CC15DEDDBA009AC386 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,9 @@
 		77C920C415DEA0E3009AC386 /* INBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INBallView.m; sourceTree = "<group>"; };
 		77C920C615DEB720009AC386 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		77C920C815DED176009AC386 /* INConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INConstant.h; sourceTree = "<group>"; };
+		77C920C915DED6E2009AC386 /* UIColor+Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Code.h"; sourceTree = "<group>"; };
+		77C920CA15DED6E2009AC386 /* UIColor+Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Code.m"; sourceTree = "<group>"; };
+		77C920CC15DEDDBA009AC386 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C920CD15DEDDBB009AC386 /* QuartzCore.framework in Frameworks */,
 				77C920C715DEB720009AC386 /* GameKit.framework in Frameworks */,
 				77C920AA15DEA068009AC386 /* UIKit.framework in Frameworks */,
 				77C920AC15DEA068009AC386 /* Foundation.framework in Frameworks */,
@@ -72,6 +78,7 @@
 		77C920A815DEA068009AC386 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77C920CC15DEDDBA009AC386 /* QuartzCore.framework */,
 				77C920C615DEB720009AC386 /* GameKit.framework */,
 				77C920A915DEA068009AC386 /* UIKit.framework */,
 				77C920AB15DEA068009AC386 /* Foundation.framework */,
@@ -90,6 +97,8 @@
 				77C920C115DEA0AC009AC386 /* INViewController.m */,
 				77C920C315DEA0E3009AC386 /* INBallView.h */,
 				77C920C415DEA0E3009AC386 /* INBallView.m */,
+				77C920C915DED6E2009AC386 /* UIColor+Code.h */,
+				77C920CA15DED6E2009AC386 /* UIColor+Code.m */,
 				77C920B015DEA068009AC386 /* Supporting Files */,
 			);
 			path = Newton;
@@ -173,6 +182,7 @@
 				77C920BA15DEA068009AC386 /* INAppDelegate.m in Sources */,
 				77C920C215DEA0AC009AC386 /* INViewController.m in Sources */,
 				77C920C515DEA0E3009AC386 /* INBallView.m in Sources */,
+				77C920CB15DED6E2009AC386 /* UIColor+Code.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,5 @@
 #import "INViewController.h"
+#import "UIColor+Code.h"
 
 @implementation INViewController
 
@@ -19,10 +20,13 @@
 {
     [super loadView];
     
-    INBallView *ballView = [[INBallView alloc] init];
-    ballView.frame = CGRectMake(0, 0, 100, 100);
-    ballView.delegate = self;
-    [self.view addSubview:ballView];
+    for (NSInteger index=0; index<3; index++) {
+        INBallView *ballView = [[INBallView alloc] init];
+        ballView.delegate = self;
+        ballView.color = [UIColor colorWithIndex:index];
+        
+        [self.view addSubview:ballView];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -67,14 +71,9 @@
           inSession:(GKSession *)session
             context:(void *)context
 {
-    NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    CGPoint velocity = [[dictionary objectForKey:@"velocity"] CGPointValue];
-    CGPoint center = [[dictionary objectForKey:@"center"] CGPointValue];
-    
-    INBallView *ballView = [[INBallView alloc] init];
-    ballView.frame    = CGRectMake(0, 0, 100, 100);
-    ballView.center   = CGPointMake(self.view.frame.size.width - center.x, center.y);
-    ballView.velocity = CGPointMake(-velocity.x, -velocity.y);
+    INBallView *ballView = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    ballView.center   = CGPointMake(self.view.frame.size.width - ballView.center.x, ballView.center.y);
+    ballView.velocity = CGPointMake(-ballView.velocity.x, -ballView.velocity.y);
     ballView.delegate = self;
     
     [self.view addSubview:ballView];
@@ -129,13 +128,9 @@
         return;
     }
     
-    NSDictionary *dictionary = @{
-        @"velocity" : [NSValue valueWithCGPoint:ballView.velocity],
-        @"center"   : [NSValue valueWithCGPoint:ballView.center],
-    };
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
-    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:ballView];
     [self sendData:data];
+    
     [ballView removeFromSuperview];
 }
 
